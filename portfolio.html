@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="李卓然的作品集 - 展示项目与创作">
+  <title>作品集 | 李卓然 ✨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 手写体字体补充 */
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+    
+    /* 作品集页面特有样式 */
+    .portfolio-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+    }
+    
+    /* 作品筛选 */
+    .filter-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    
+    .filter-tab {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    
+    .filter-tab:hover,
+    .filter-tab.active {
+      background: var(--gradient-warm);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 作品展示网格 */
+    .portfolio-showcase {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      gap: 2rem;
+    }
+    
+    .project-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-bounce);
+    }
+    
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .project-thumbnail {
+      height: 280px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 5rem;
+    }
+    
+    .project-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(0,0,0,0.8) 0%, transparent 60%);
+      opacity: 0;
+      transition: var(--transition);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 2rem;
+    }
+    
+    .project-card:hover .project-overlay {
+      opacity: 1;
+    }
+    
+    .project-actions {
+      display: flex;
+      gap: 1rem;
+    }
+    
+    .project-action {
+      padding: 0.75rem 1.25rem;
+      background: white;
+      color: var(--primary);
+      border-radius: var(--radius-full);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: var(--transition);
+      transform: translateY(20px);
+    }
+    
+    .project-card:hover .project-action {
+      transform: translateY(0);
+    }
+    
+    .project-action:hover {
+      background: var(--primary);
+      color: white;
+    }
+    
+    .project-info {
+      padding: 2rem;
+    }
+    
+    .project-category {
+      display: inline-block;
+      background: var(--bg-secondary);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .project-title {
+      font-size: 1.4rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+    }
+    
+    .project-description {
+      color: var(--text-secondary);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .project-tech {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .tech-tag {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.3rem 0.7rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* 特色项目 */
+    .featured-project {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1.2fr 1fr;
+      gap: 0;
+    }
+    
+    .featured-project .project-thumbnail {
+      height: 100%;
+      min-height: 400px;
+      border-radius: var(--radius-lg) 0 0 var(--radius-lg);
+    }
+    
+    .featured-project .project-info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 3rem;
+    }
+    
+    .featured-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: var(--gradient-warm);
+      color: white;
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+      width: fit-content;
+    }
+    
+    .featured-project .project-title {
+      font-size: 2rem;
+    }
+    
+    /* 统计数据 */
+    .stats-section {
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      margin-top: 4rem;
+    }
+    
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      text-align: center;
+    }
+    
+    .stat-item {
+      padding: 1.5rem;
+    }
+    
+    .stat-number {
+      font-size: 3rem;
+      font-weight: 700;
+      background: var(--gradient-warm);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+      color: var(--text-secondary);
+      font-weight: 500;
+    }
+    
+    @media (max-width: 968px) {
+      .featured-project {
+        grid-template-columns: 1fr;
+      }
+      
+      .featured-project .project-thumbnail {
+        min-height: 280px;
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+      }
+      
+      .portfolio-showcase {
+        grid-template-columns: 1fr;
+      }
+      
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .stat-number {
+        font-size: 2.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 动态背景装饰 -->
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- 光标跟随效果 -->
+  <div class="cursor-glow"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">卓然 ✨</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我</a></li>
+        <li><a href="blog.html">博客</a></li>
+        <li><a href="portfolio.html" class="active">作品集</a></li>
+        <li><a href="contact.html">联系</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 作品集头部 -->
+  <section class="portfolio-hero">
+    <div class="reveal">
+      <p class="section-tag">🎨 我的作品</p>
+      <h1 class="hero-title">
+        创意<span class="name">作品集</span>
+      </h1>
+      <p class="hero-subtitle">把想法变成现实，用作品讲述故事</p>
+    </div>
+  </section>
+
+  <!-- 筛选标签 -->
+  <section class="section" style="padding-top: 0;">
+    <div class="filter-tabs reveal">
+      <button class="filter-tab active">全部作品</button>
+      <button class="filter-tab">📊 研究项目</button>
+      <button class="filter-tab">💻 技术开发</button>
+      <button class="filter-tab">✍️ 创意写作</button>
+      <button class="filter-tab">🎨 设计作品</button>
+    </div>
+    
+    <!-- 作品展示 -->
+    <div class="portfolio-showcase">
+      <!-- 特色项目 -->
+      <div class="project-card featured-project reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);">
+          🔬
+        </div>
+        <div class="project-info">
+          <div class="featured-badge">
+            <span>⭐</span> 主要项目
+          </div>
+          <span class="project-category">研究项目</span>
+          <h3 class="project-title">硕士研究课题</h3>
+          <p class="project-description">
+            作为华中农业大学的在读硕士，我正在进行有意义的学术研究。
+            这个项目让我深入学习了专业知识，也培养了我的批判性思维和问题解决能力。
+            目前已经完成了文献综述和初步实验阶段。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">学术研究</span>
+            <span class="tech-tag">数据分析</span>
+            <span class="tech-tag">论文写作</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 项目卡片 -->
+      <div class="project-card reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #4ECDC4, #A78BFA);">
+          💻
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a href="#" class="project-action">查看详情</a>
+              <a href="#" class="project-action">GitHub</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category">技术开发</span>
+          <h3 class="project-title">个人网站开发</h3>
+          <p class="project-description">
+            你现在看到的这个网站！使用 HTML、CSS 和 JavaScript 从零开始构建，
+            融入了 ENFP 人格的活力和创意元素。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3</span>
+            <span class="tech-tag">JavaScript</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #F472B6, #A78BFA);">
+          ✍️
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a href="#" class="project-action">阅读作品</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category">创意写作</span>
+          <h3 class="project-title">个人博客文章集</h3>
+          <p class="project-description">
+            记录学习心得、生活感悟和 ENFP 的日常思考。
+            用文字捕捉那些转瞬即逝的灵感和想法。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">博客写作</span>
+            <span class="tech-tag">内容创作</span>
+            <span class="tech-tag">ENFP</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #60A5FA, #4ECDC4);">
+          📊
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a href="#" class="project-action">查看报告</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category">研究项目</span>
+          <h3 class="project-title">数据分析项目</h3>
+          <p class="project-description">
+            使用数据分析工具进行的研究项目，
+            从数据中发现有趣的模式和洞察。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">数据可视化</span>
+            <span class="tech-tag">统计分析</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #FFE66D, #FF6B6B);">
+          🎨
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a href="#" class="project-action">查看设计</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category">设计作品</span>
+          <h3 class="project-title">PPT 设计作品集</h3>
+          <p class="project-description">
+            为各类学术报告和项目展示设计的 PPT，
+            注重视觉美感和信息传达的平衡。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">视觉设计</span>
+            <span class="tech-tag">演示文稿</span>
+            <span class="tech-tag">信息设计</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="project-card reveal">
+        <div class="project-thumbnail" style="background: linear-gradient(135deg, #A78BFA, #F472B6);">
+          🤝
+          <div class="project-overlay">
+            <div class="project-actions">
+              <a href="#" class="project-action">了解更多</a>
+            </div>
+          </div>
+        </div>
+        <div class="project-info">
+          <span class="project-category">团队项目</span>
+          <h3 class="project-title">团队协作项目</h3>
+          <p class="project-description">
+            与同学合作完成的项目，锻炼了团队协作能力，
+            学会了如何在多元团队中发挥 ENFP 的社交优势。
+          </p>
+          <div class="project-tech">
+            <span class="tech-tag">团队协作</span>
+            <span class="tech-tag">项目管理</span>
+            <span class="tech-tag">沟通协调</span>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 统计数据 -->
+    <div class="stats-section reveal">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-number">10+</div>
+          <div class="stat-label">完成项目</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">20+</div>
+          <div class="stat-label">博客文章</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">5+</div>
+          <div class="stat-label">研究论文</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">∞</div>
+          <div class="stat-label">创意想法</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 合作邀请 -->
+  <section class="section">
+    <div class="contact-section reveal">
+      <div class="contact-content">
+        <div class="contact-emoji">🚀</div>
+        <h2 class="section-title">有项目<span>合作</span>？</h2>
+        <p class="hero-description" style="margin: 1rem auto;">
+          无论是学术研究、创意项目还是其他有趣的合作，
+          我都很乐意听听你的想法！
+        </p>
+        <a href="contact.html" class="btn btn-primary">
+          <span>💬</span> 联系我
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>
+      用 <span class="footer-heart">❤️</span> 和 ☕ 制作 · 
+      © 2025 李卓然
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

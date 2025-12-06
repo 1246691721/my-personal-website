@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="联系李卓然 - 让我们一起聊聊">
+  <title>联系我 | 李卓然 ✨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 手写体字体补充 */
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+    
+    /* 联系页面特有样式 */
+    .contact-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+    }
+    
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: start;
+    }
+    
+    /* 联系信息卡片 */
+    .contact-info {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .contact-info h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    
+    .contact-info p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+    
+    .contact-methods {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .contact-method {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      padding: 1rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      transition: var(--transition);
+    }
+    
+    .contact-method:hover {
+      transform: translateX(10px);
+      background: var(--bg-primary);
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .contact-icon {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-warm);
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+    }
+    
+    .contact-detail h4 {
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: var(--text-primary);
+    }
+    
+    .contact-detail span {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+    }
+    
+    /* 社交媒体 */
+    .social-section {
+      margin-top: 2rem;
+      padding-top: 2rem;
+      border-top: 1px solid var(--bg-secondary);
+    }
+    
+    .social-section h4 {
+      margin-bottom: 1rem;
+      color: var(--text-primary);
+    }
+    
+    .social-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+    }
+    
+    .social-btn {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 1.25rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-md);
+      text-decoration: none;
+      color: var(--text-secondary);
+      transition: var(--transition-bounce);
+    }
+    
+    .social-btn:hover {
+      transform: translateY(-5px);
+      background: var(--gradient-warm);
+      color: white;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .social-btn span:first-child {
+      font-size: 1.5rem;
+    }
+    
+    .social-btn span:last-child {
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+    
+    /* 联系表单 */
+    .contact-form-wrapper {
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .contact-form-wrapper h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .contact-form-wrapper > p {
+      color: var(--text-secondary);
+      margin-bottom: 2rem;
+    }
+    
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+    
+    .form-group label {
+      font-weight: 500;
+      color: var(--text-primary);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--bg-secondary);
+      border-radius: var(--radius-md);
+      font-size: 1rem;
+      font-family: inherit;
+      transition: var(--transition);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+    }
+    
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+    }
+    
+    .form-group textarea {
+      min-height: 150px;
+      resize: vertical;
+    }
+    
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    
+    .submit-btn {
+      background: var(--gradient-warm);
+      color: white;
+      padding: 1.25rem 2rem;
+      border: none;
+      border-radius: var(--radius-full);
+      font-size: 1rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: var(--transition-bounce);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+    
+    .submit-btn:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    /* FAQ 区域 */
+    .faq-section {
+      margin-top: 4rem;
+    }
+    
+    .faq-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 1.5rem;
+    }
+    
+    .faq-item {
+      background: var(--bg-card);
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+    
+    .faq-item:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .faq-question {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.75rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .faq-question span {
+      color: var(--primary);
+    }
+    
+    .faq-answer {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+      line-height: 1.7;
+      padding-left: 1.75rem;
+    }
+    
+    /* 地图区域（装饰性） */
+    .map-section {
+      margin-top: 4rem;
+      background: var(--gradient-cool);
+      border-radius: var(--radius-lg);
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .map-content {
+      text-align: center;
+      color: white;
+      z-index: 1;
+    }
+    
+    .map-content span {
+      font-size: 4rem;
+      display: block;
+      margin-bottom: 1rem;
+    }
+    
+    .map-content h3 {
+      font-size: 1.5rem;
+      margin-bottom: 0.5rem;
+    }
+    
+    .map-content p {
+      opacity: 0.9;
+    }
+    
+    @media (max-width: 968px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .form-row {
+        grid-template-columns: 1fr;
+      }
+      
+      .social-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 动态背景装饰 -->
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- 光标跟随效果 -->
+  <div class="cursor-glow"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">卓然 ✨</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我</a></li>
+        <li><a href="blog.html">博客</a></li>
+        <li><a href="portfolio.html">作品集</a></li>
+        <li><a href="contact.html" class="active">联系</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 联系页头部 -->
+  <section class="contact-hero">
+    <div class="reveal">
+      <p class="section-tag">💬 联系我</p>
+      <h1 class="hero-title">
+        让我们<span class="name">聊聊</span>吧
+      </h1>
+      <p class="hero-subtitle">作为 ENFP，我超级喜欢结交新朋友！</p>
+    </div>
+  </section>
+
+  <!-- 联系主体 -->
+  <section class="section" style="padding-top: 0;">
+    <div class="contact-grid">
+      <!-- 联系信息 -->
+      <div class="contact-info reveal">
+        <h3>🤗 很高兴认识你！</h3>
+        <p>
+          无论你是想讨论学术问题、分享有趣的想法，
+          还是单纯想交个朋友，我都很乐意收到你的消息！
+          作为一个 ENFP，我相信每一次对话都可能带来意想不到的惊喜。
+        </p>
+        
+        <div class="contact-methods">
+          <div class="contact-method">
+            <div class="contact-icon">📧</div>
+            <div class="contact-detail">
+              <h4>电子邮件</h4>
+              <span>823300235@qq.com</span>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">📞</div>
+            <div class="contact-detail">
+              <h4>电话</h4>
+              <span>17386244145</span>
+            </div>
+          </div>
+          
+          <div class="contact-method">
+            <div class="contact-icon">🎓</div>
+            <div class="contact-detail">
+              <h4>学校</h4>
+              <span>华中农业大学</span>
+            </div>
+          </div>
+        </div>
+        
+        <div class="social-section">
+          <h4>在这里也能找到我 👇</h4>
+          <div class="social-grid">
+            <a href="#" class="social-btn">
+              <span>🐙</span>
+              <span>GitHub</span>
+            </a>
+            <a href="#" class="social-btn">
+              <span>📱</span>
+              <span>微博</span>
+            </a>
+            <a href="#" class="social-btn">
+              <span>📖</span>
+              <span>知乎</span>
+            </a>
+            <a href="#" class="social-btn">
+              <span>🅱️</span>
+              <span>B站</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <!-- 联系表单 -->
+      <div class="contact-form-wrapper reveal">
+        <h3>✉️ 发送消息</h3>
+        <p>填写下方表单，我会尽快回复你！</p>
+        
+        <form class="contact-form" id="contactForm">
+          <div class="form-row">
+            <div class="form-group">
+              <label><span>👤</span> 你的名字</label>
+              <input type="text" id="senderName" placeholder="怎么称呼你？" required>
+            </div>
+            <div class="form-group">
+              <label><span>📧</span> 电子邮箱</label>
+              <input type="email" id="senderEmail" placeholder="your@email.com" required>
+            </div>
+          </div>
+          
+          <div class="form-group">
+            <label><span>📋</span> 主题</label>
+            <select id="subject" required>
+              <option value="">选择一个主题...</option>
+              <option value="学术交流">📚 学术交流</option>
+              <option value="合作邀请">🤝 合作邀请</option>
+              <option value="随便聊聊">💬 随便聊聊</option>
+              <option value="建议反馈">💡 建议反馈</option>
+              <option value="其他">🎯 其他</option>
+            </select>
+          </div>
+          
+          <div class="form-group">
+            <label><span>💭</span> 消息内容</label>
+            <textarea id="message" placeholder="想和我说什么呢？随便聊聊也可以！" required></textarea>
+          </div>
+          
+          <button type="submit" class="submit-btn">
+            <span>🚀</span> 发送消息
+          </button>
+        </form>
+        
+        <!-- 或者直接发邮件 -->
+        <div style="text-align: center; margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid var(--bg-secondary);">
+          <p style="color: var(--text-secondary); margin-bottom: 1rem; font-size: 0.9rem;">或者直接发送邮件给我</p>
+          <a href="mailto:823300235@qq.com?subject=来自网站的消息" class="btn btn-secondary" style="display: inline-flex;">
+            <span>📧</span> 直接发邮件
+          </a>
+        </div>
+      </div>
+    </div>
+    
+    <!-- FAQ -->
+    <div class="faq-section">
+      <div class="section-header reveal">
+        <p class="section-tag">❓ 常见问题</p>
+        <h2 class="section-title">你可能想<span>知道</span></h2>
+      </div>
+      
+      <div class="faq-grid">
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>💬</span>
+            多久会回复消息？
+          </div>
+          <p class="faq-answer">
+            我通常会在 24-48 小时内回复邮件。如果比较紧急，可以通过微信联系我！
+          </p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>🤝</span>
+            可以进行学术合作吗？
+          </div>
+          <p class="faq-answer">
+            当然！我很乐意与志同道合的朋友一起探讨学术问题或合作项目。
+          </p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>☕</span>
+            可以约线下见面吗？
+          </div>
+          <p class="faq-answer">
+            如果你在同一城市，我们可以约个咖啡！作为 ENFP，我很喜欢面对面交流。
+          </p>
+        </div>
+        
+        <div class="faq-item reveal">
+          <div class="faq-question">
+            <span>🎯</span>
+            可以请教 MBTI 相关问题吗？
+          </div>
+          <p class="faq-answer">
+            可以呀！虽然我不是专家，但作为 ENFP 本人，很乐意分享我的体验和感受。
+          </p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- 地图区域（装饰性） -->
+    <div class="map-section reveal">
+      <div class="map-content">
+        <span>🌏</span>
+        <h3>来自中国</h3>
+        <p>在这个蓝色星球上的某个角落 ✨</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>
+      用 <span class="footer-heart">❤️</span> 和 ☕ 制作 · 
+      © 2025 李卓然
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // 表单提交处理 - 通过邮件发送
+    document.getElementById('contactForm').addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      const name = document.getElementById('senderName').value;
+      const email = document.getElementById('senderEmail').value;
+      const subject = document.getElementById('subject').value;
+      const message = document.getElementById('message').value;
+      
+      // 构建邮件内容
+      const mailSubject = encodeURIComponent(`[网站留言] ${subject} - 来自 ${name}`);
+      const mailBody = encodeURIComponent(
+        `你好，李卓然！\n\n` +
+        `我是 ${name}，通过你的个人网站联系你。\n\n` +
+        `我的邮箱：${email}\n\n` +
+        `消息内容：\n${message}\n\n` +
+        `期待你的回复！`
+      );
+      
+      // 打开邮件客户端
+      window.location.href = `mailto:823300235@qq.com?subject=${mailSubject}&body=${mailBody}`;
+      
+      // 显示成功提示
+      alert('🎉 正在打开邮件客户端...\n\n如果没有自动打开，请直接发送邮件到：823300235@qq.com');
+    });
+  </script>
+</body>
+</html>
+

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ENFP 的自我探索之旅：如何拥抱真实的自己 - 李卓然的博客">
+  <title>ENFP 的自我探索之旅 | 李卓然的博客 ✨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+    
+    .article-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .article-meta {
+      display: flex;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-bottom: 1rem;
+      flex-wrap: wrap;
+    }
+    
+    .article-meta span {
+      color: var(--text-secondary);
+      font-size: 0.9rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .article-category {
+      background: var(--gradient-warm);
+      color: white;
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    .article-title {
+      font-size: 2.5rem;
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 1.5rem;
+    }
+    
+    .article-title span {
+      background: var(--gradient-sunset);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .article-content {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 0 2rem 4rem;
+    }
+    
+    .article-content p {
+      font-size: 1.1rem;
+      line-height: 2;
+      margin-bottom: 1.5rem;
+      color: var(--text-primary);
+    }
+    
+    .article-content h2 {
+      font-size: 1.75rem;
+      margin: 3rem 0 1.5rem;
+      color: var(--primary);
+    }
+    
+    .article-content h3 {
+      font-size: 1.35rem;
+      margin: 2rem 0 1rem;
+      color: var(--text-primary);
+    }
+    
+    .article-content ul, .article-content ol {
+      margin: 1.5rem 0;
+      padding-left: 2rem;
+    }
+    
+    .article-content li {
+      margin-bottom: 0.75rem;
+      line-height: 1.8;
+    }
+    
+    .article-content blockquote {
+      border-left: 4px solid var(--primary);
+      padding: 1rem 1.5rem;
+      margin: 2rem 0;
+      background: var(--bg-secondary);
+      border-radius: 0 var(--radius-md) var(--radius-md) 0;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+    
+    .article-content img {
+      max-width: 100%;
+      border-radius: var(--radius-md);
+      margin: 2rem 0;
+      box-shadow: var(--shadow-md);
+    }
+    
+    .highlight-box {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(167, 139, 250, 0.1));
+      border-radius: var(--radius-md);
+      padding: 1.5rem;
+      margin: 2rem 0;
+    }
+    
+    .highlight-box h4 {
+      color: var(--primary);
+      margin-bottom: 0.75rem;
+    }
+    
+    .article-footer {
+      max-width: 750px;
+      margin: 0 auto;
+      padding: 2rem;
+      border-top: 2px solid var(--bg-secondary);
+    }
+    
+    .article-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+    }
+    
+    .article-tag {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+    }
+    
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--primary);
+      text-decoration: none;
+      font-weight: 600;
+    }
+    
+    .back-link:hover {
+      gap: 0.75rem;
+    }
+    
+    @media (max-width: 768px) {
+      .article-title {
+        font-size: 1.75rem;
+      }
+      
+      .article-content {
+        padding: 0 1.5rem 3rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 动态背景装饰 -->
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- 光标跟随效果 -->
+  <div class="cursor-glow"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">卓然 ✨</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我</a></li>
+        <li><a href="blog.html" class="active">博客</a></li>
+        <li><a href="portfolio.html">作品集</a></li>
+        <li><a href="contact.html">联系</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 文章头部 -->
+  <header class="article-hero">
+    <div class="article-meta">
+      <span class="article-category">🦋 ENFP</span>
+      <span>📅 2025年12月4日</span>
+      <span>⏱️ 8 分钟阅读</span>
+    </div>
+    
+    <h1 class="article-title">
+      ENFP 的自我探索之旅：<br><span>如何拥抱真实的自己</span>
+    </h1>
+  </header>
+
+  <!-- 文章正文 -->
+  <article class="article-content">
+    
+    <p>
+      嗨，朋友们！如果你正在读这篇文章，也许你和我一样，是一个 ENFP——那个被称为"竞选者"的性格类型。或者，你只是好奇这群脑子里永远有一百个想法的人是怎么生活的。无论如何，欢迎来到我的内心世界。
+    </p>
+    
+    <p>
+      今天，我想和你分享我作为一个 ENFP 的自我探索之旅，以及我是如何学会拥抱真实的自己的。这不是一篇教程，而是一个故事——关于困惑、接纳和成长的故事。
+    </p>
+
+    <h2>🌪️ 那些曾经困扰我的"缺点"</h2>
+    
+    <p>
+      在很长一段时间里，我觉得自己"有问题"。
+    </p>
+    
+    <p>
+      从小到大，我听过无数次这样的话：
+    </p>
+    
+    <ul>
+      <li>"你怎么又三分钟热度？"</li>
+      <li>"能不能专注一点？"</li>
+      <li>"你想太多了。"</li>
+      <li>"别总是这么情绪化。"</li>
+      <li>"现实一点好吗？"</li>
+    </ul>
+    
+    <p>
+      每一句话都像一根小刺，扎在心里。我开始怀疑自己：为什么我不能像其他人一样稳定？为什么我的兴趣总是在变？为什么我的情绪像过山车一样起起伏伏？
+    </p>
+    
+    <blockquote>
+      我以为，成熟意味着变成一个不一样的人——一个更"正常"的人。
+    </blockquote>
+
+    <h2>🦋 遇见 ENFP：原来我不是"有问题"</h2>
+    
+    <p>
+      直到有一天，我接触到了 MBTI 性格测试。当我看到 ENFP 的描述时，我愣住了——那简直就是在说我。
+    </p>
+    
+    <div class="highlight-box">
+      <h4>ENFP 的核心特质：</h4>
+      <ul>
+        <li><strong>E（外向）</strong>：从与人互动中获取能量</li>
+        <li><strong>N（直觉）</strong>：关注可能性和未来，而非眼前的细节</li>
+        <li><strong>F（情感）</strong>：以价值观和情感来做决定</li>
+        <li><strong>P（知觉）</strong>：灵活开放，享受自发和探索</li>
+      </ul>
+    </div>
+    
+    <p>
+      原来，我的"三分钟热度"是因为我对新事物有着天然的好奇心；我的"想太多"是因为我的大脑总在探索各种可能性；我的"情绪化"是因为我有着敏锐的情感感知力。
+    </p>
+    
+    <p>
+      这些不是缺点，而是特点。
+    </p>
+    
+    <p>
+      这个发现就像打开了一扇门，让我看到了一个全新的自己。
+    </p>
+
+    <h2>🌟 学会拥抱真实的自己</h2>
+    
+    <p>
+      但知道自己是 ENFP 只是第一步。真正的挑战是：如何与这个真实的自己和平共处？
+    </p>
+    
+    <h3>1. 接受"不完美"的自己</h3>
+    
+    <p>
+      我学会了不再为自己的兴趣多变而自责。是的，我可能同时对十件事感兴趣，但这正是我保持生活热情的方式。我不需要在一件事上坚持一辈子才算"成功"。
+    </p>
+    
+    <h3>2. 找到适合自己的节奏</h3>
+    
+    <p>
+      我发现，强迫自己按照别人的方式生活只会让我更加痛苦。我需要创意、需要自由、需要与人连接。所以我开始设计属于自己的生活方式：
+    </p>
+    
+    <ul>
+      <li>允许自己同时进行多个项目</li>
+      <li>安排足够的社交时间</li>
+      <li>给自己的想法留出"疯狂"的空间</li>
+      <li>用写作和创作来释放内心的想法</li>
+    </ul>
+    
+    <h3>3. 把"缺点"变成"超能力"</h3>
+    
+    <p>
+      曾经让我困扰的特质，现在成了我最大的优势：
+    </p>
+    
+    <ul>
+      <li><strong>好奇心强</strong> → 学习能力强，知识面广</li>
+      <li><strong>情感丰富</strong> → 能够理解和共情他人</li>
+      <li><strong>想法多</strong> → 创意源源不断</li>
+      <li><strong>热情洋溢</strong> → 能够感染和激励身边的人</li>
+    </ul>
+
+    <h2>💡 给同为 ENFP 的你</h2>
+    
+    <p>
+      如果你也是 ENFP，我想对你说：
+    </p>
+    
+    <blockquote>
+      你不需要改变自己去适应这个世界。你需要的，是找到一个能让你做自己的方式。
+    </blockquote>
+    
+    <p>
+      我们可能永远不会成为那种按部就班、稳扎稳打的人。但我们有自己的光芒——那种能够看到无限可能、感染他人、创造奇迹的光芒。
+    </p>
+    
+    <p>
+      是的，我们会有低落的时候，会有迷茫的时候，会有被世界误解的时候。但请记住：
+    </p>
+    
+    <ul>
+      <li>你的热情是真实的</li>
+      <li>你的创意是珍贵的</li>
+      <li>你的情感是美好的</li>
+      <li>你的存在让这个世界更加丰富多彩</li>
+    </ul>
+
+    <h2>🌈 写在最后</h2>
+    
+    <p>
+      自我探索是一场没有终点的旅程。我仍然在路上，仍然在学习如何更好地做自己。
+    </p>
+    
+    <p>
+      但我已经不再害怕了。因为我知道，我不需要完美，我只需要真实。
+    </p>
+    
+    <p>
+      亲爱的朋友，无论你是 ENFP 还是其他类型，我希望你也能找到属于自己的答案。记住，这个世界需要各种各样的人，而你，就是独一无二的存在。
+    </p>
+    
+    <p>
+      感谢你读到这里。如果这篇文章让你有所共鸣，欢迎留言告诉我你的故事。
+    </p>
+    
+    <p>
+      我们都在成为更好的自己的路上。一起加油吧！💪✨
+    </p>
+    
+    <p style="text-align: right; color: var(--text-secondary); margin-top: 3rem;">
+      —— 李卓然<br>
+      一个正在学会爱自己的 ENFP 🦋
+    </p>
+    
+  </article>
+
+  <!-- 文章底部 -->
+  <footer class="article-footer">
+    <div class="article-tags">
+      <span class="article-tag">#ENFP</span>
+      <span class="article-tag">#MBTI</span>
+      <span class="article-tag">#自我探索</span>
+      <span class="article-tag">#成长</span>
+      <span class="article-tag">#做自己</span>
+    </div>
+    
+    <a href="blog.html" class="back-link">
+      <span>←</span> 返回博客列表
+    </a>
+  </footer>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>
+      用 <span class="footer-heart">❤️</span> 和 ☕ 制作 · 
+      © 2025 李卓然
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

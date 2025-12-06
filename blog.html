@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="李卓然的博客 - 分享思考、学习与生活">
+  <title>博客 | 李卓然 ✨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🌟</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    /* 手写体字体补充 */
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+    
+    /* 博客页面特有样式 */
+    .blog-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+    }
+    
+    /* 分类标签 */
+    .category-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+      margin-bottom: 3rem;
+    }
+    
+    .category-tab {
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+      border: none;
+      font-family: inherit;
+      font-size: 0.95rem;
+    }
+    
+    .category-tab:hover,
+    .category-tab.active {
+      background: var(--gradient-warm);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 文章列表 */
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+    
+    .blog-item {
+      display: grid;
+      grid-template-columns: 300px 1fr;
+      gap: 2rem;
+      background: var(--bg-card);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition-bounce);
+    }
+    
+    .blog-item:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-lg);
+    }
+    
+    .blog-item-image {
+      height: 100%;
+      min-height: 220px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+    }
+    
+    .blog-item-content {
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    
+    .blog-item-meta {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+    
+    .blog-item-category {
+      background: var(--bg-secondary);
+      color: var(--primary);
+      padding: 0.25rem 0.75rem;
+      border-radius: var(--radius-full);
+      font-size: 0.8rem;
+      font-weight: 600;
+    }
+    
+    .blog-item-date {
+      color: var(--text-light);
+      font-size: 0.9rem;
+    }
+    
+    .blog-item-title {
+      font-size: 1.5rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+      color: var(--text-primary);
+      transition: var(--transition);
+    }
+    
+    .blog-item:hover .blog-item-title {
+      color: var(--primary);
+    }
+    
+    .blog-item-excerpt {
+      color: var(--text-secondary);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    
+    .blog-item-tags {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+    
+    .blog-tag {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.25rem 0.6rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.75rem;
+    }
+    
+    /* 特色文章 */
+    .featured-post {
+      background: var(--gradient-sunset);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      color: white;
+      margin-bottom: 3rem;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .featured-post::before {
+      content: '✨';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 2rem;
+      animation: float 3s ease-in-out infinite;
+    }
+    
+    .featured-badge {
+      display: inline-block;
+      background: rgba(255, 255, 255, 0.2);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius-full);
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+    }
+    
+    .featured-title {
+      font-size: 2rem;
+      margin-bottom: 1rem;
+    }
+    
+    .featured-excerpt {
+      opacity: 0.9;
+      max-width: 600px;
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+    
+    .featured-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: white;
+      color: var(--primary);
+      padding: 0.75rem 1.5rem;
+      border-radius: var(--radius-full);
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .featured-link:hover {
+      transform: translateX(5px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    /* 分页 */
+    .pagination {
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      margin-top: 3rem;
+    }
+    
+    .page-btn {
+      width: 45px;
+      height: 45px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: var(--radius-md);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-weight: 500;
+      transition: var(--transition);
+    }
+    
+    .page-btn:hover,
+    .page-btn.active {
+      background: var(--gradient-warm);
+      color: white;
+    }
+    
+    @media (max-width: 768px) {
+      .blog-item {
+        grid-template-columns: 1fr;
+      }
+      
+      .blog-item-image {
+        min-height: 180px;
+      }
+      
+      .featured-post {
+        padding: 2rem;
+      }
+      
+      .featured-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 动态背景装饰 -->
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- 光标跟随效果 -->
+  <div class="cursor-glow"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">卓然 ✨</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html">关于我</a></li>
+        <li><a href="blog.html" class="active">博客</a></li>
+        <li><a href="portfolio.html">作品集</a></li>
+        <li><a href="contact.html">联系</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 博客头部 -->
+  <section class="blog-hero">
+    <div class="reveal">
+      <p class="section-tag">📝 我的博客</p>
+      <h1 class="hero-title">
+        思考、<span class="name">分享</span>、成长
+      </h1>
+      <p class="hero-subtitle">记录生活的点滴，分享学习的心得</p>
+    </div>
+  </section>
+
+  <!-- 分类标签 -->
+  <section class="section" style="padding-top: 0;">
+    <div class="category-tabs reveal">
+      <button class="category-tab active">全部</button>
+      <button class="category-tab">💭 思考</button>
+      <button class="category-tab">📚 学习</button>
+      <button class="category-tab">🌱 成长</button>
+      <button class="category-tab">✨ 生活</button>
+      <button class="category-tab">🎨 创意</button>
+    </div>
+    
+    <!-- 特色文章 -->
+    <div class="featured-post reveal">
+      <span class="featured-badge">🔥 置顶推荐</span>
+      <h2 class="featured-title">ENFP 的自我探索之旅：如何拥抱真实的自己</h2>
+      <p class="featured-excerpt">
+        作为一个 ENFP，我曾经困惑于自己的"三分钟热度"和"想法太多"。
+        但当我真正理解了这些特质背后的意义，我开始学会了如何将它们转化为优势...
+      </p>
+      <a href="blog-enfp-self-discovery.html" class="featured-link">
+        阅读全文 <span>→</span>
+      </a>
+    </div>
+    
+    <!-- 博客列表 -->
+    <div class="blog-list">
+      <article class="blog-item reveal">
+        <div class="blog-item-image" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);">
+          💭
+        </div>
+        <div class="blog-item-content">
+          <div class="blog-item-meta">
+            <span class="blog-item-category">思考</span>
+            <span class="blog-item-date">2025年12月1日</span>
+          </div>
+          <h3 class="blog-item-title">ENFP 的日常：如何在混乱中找到秩序</h3>
+          <p class="blog-item-excerpt">
+            作为一个 ENFP，我的脑海里总是充满各种奇思妙想。一个想法还没完成，
+            下一个已经迫不及待地跳出来。今天想和大家分享一下我是如何在创意与效率之间找到平衡的，
+            以及那些帮助我保持专注的小技巧。
+          </p>
+          <div class="blog-item-tags">
+            <span class="blog-tag">#ENFP</span>
+            <span class="blog-tag">#效率</span>
+            <span class="blog-tag">#自我管理</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="blog-item reveal">
+        <div class="blog-item-image" style="background: linear-gradient(135deg, #4ECDC4, #A78BFA);">
+          📚
+        </div>
+        <div class="blog-item-content">
+          <div class="blog-item-meta">
+            <span class="blog-item-category">学习</span>
+            <span class="blog-item-date">2025年11月25日</span>
+          </div>
+          <h3 class="blog-item-title">研究生生活的意外惊喜</h3>
+          <p class="blog-item-excerpt">
+            刚开始读研的时候，我以为会很枯燥——每天泡图书馆、看论文、做实验。
+            但没想到，这段旅程给我带来了这么多惊喜和成长。今天想聊聊那些让我爱上研究生活的瞬间。
+          </p>
+          <div class="blog-item-tags">
+            <span class="blog-tag">#研究生</span>
+            <span class="blog-tag">#学习心得</span>
+            <span class="blog-tag">#成长</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="blog-item reveal">
+        <div class="blog-item-image" style="background: linear-gradient(135deg, #F472B6, #A78BFA);">
+          🌱
+        </div>
+        <div class="blog-item-content">
+          <div class="blog-item-meta">
+            <span class="blog-item-category">成长</span>
+            <span class="blog-item-date">2025年11月18日</span>
+          </div>
+          <h3 class="blog-item-title">那些让我成为更好自己的习惯</h3>
+          <p class="blog-item-excerpt">
+            分享一些我坚持了很久的小习惯，它们看似简单，却在潜移默化中改变了我的生活。
+            从早起的仪式感，到睡前的反思时刻，这些小事情组成了我的成长地图。
+          </p>
+          <div class="blog-item-tags">
+            <span class="blog-tag">#习惯</span>
+            <span class="blog-tag">#自我提升</span>
+            <span class="blog-tag">#生活方式</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="blog-item reveal">
+        <div class="blog-item-image" style="background: linear-gradient(135deg, #60A5FA, #4ECDC4);">
+          ✨
+        </div>
+        <div class="blog-item-content">
+          <div class="blog-item-meta">
+            <span class="blog-item-category">生活</span>
+            <span class="blog-item-date">2025年11月10日</span>
+          </div>
+          <h3 class="blog-item-title">一个 ENFP 的周末：当创意遇上拖延</h3>
+          <p class="blog-item-excerpt">
+            周六早上，我信心满满地列了一张长长的待办清单。
+            然后... 让我告诉你接下来发生了什么。剧透：这是一个关于创意、拖延和意外收获的故事。
+          </p>
+          <div class="blog-item-tags">
+            <span class="blog-tag">#周末</span>
+            <span class="blog-tag">#ENFP日常</span>
+            <span class="blog-tag">#生活碎片</span>
+          </div>
+        </div>
+      </article>
+      
+      <article class="blog-item reveal">
+        <div class="blog-item-image" style="background: linear-gradient(135deg, #FFE66D, #FF6B6B);">
+          🎨
+        </div>
+        <div class="blog-item-content">
+          <div class="blog-item-meta">
+            <span class="blog-item-category">创意</span>
+            <span class="blog-item-date">2025年11月3日</span>
+          </div>
+          <h3 class="blog-item-title">如何把"想太多"变成超能力</h3>
+          <p class="blog-item-excerpt">
+            "你想太多了"——这句话我听了无数遍。但今天我想说，
+            "想太多"其实是一种被低估的超能力。让我告诉你如何驾驭它，而不是被它驾驭。
+          </p>
+          <div class="blog-item-tags">
+            <span class="blog-tag">#创意思维</span>
+            <span class="blog-tag">#ENFP</span>
+            <span class="blog-tag">#思考</span>
+          </div>
+        </div>
+      </article>
+    </div>
+    
+    <!-- 分页 -->
+    <div class="pagination reveal">
+      <a href="#" class="page-btn active">1</a>
+      <a href="#" class="page-btn">2</a>
+      <a href="#" class="page-btn">3</a>
+      <a href="#" class="page-btn">→</a>
+    </div>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>
+      用 <span class="footer-heart">❤️</span> 和 ☕ 制作 · 
+      © 2025 李卓然
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
+

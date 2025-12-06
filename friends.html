@@ -1,0 +1,1645 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="致我的朋友们 - 李卓然的回忆录">
+  <title>致我的朋友们 | 李卓然 ✨</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💝</text></svg>">
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=ZCOOL+XiaoWei&family=Ma+Shan+Zheng&family=Long+Cang&display=swap');
+    
+    /* 页面头部 */
+    .friends-hero {
+      padding: 10rem 2rem 4rem;
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    
+    .friends-hero p {
+      color: var(--text-secondary);
+      font-size: 1.15rem;
+      line-height: 1.9;
+      max-width: 600px;
+      margin: 1.5rem auto 0;
+    }
+    
+    /* 朋友分组标签 - 全新设计 */
+    .period-tabs {
+      display: flex;
+      justify-content: center;
+      gap: 1.25rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+      position: sticky;
+      top: 80px;
+      background: rgba(255, 250, 245, 0.98);
+      backdrop-filter: blur(20px);
+      padding: 1.5rem 2rem;
+      z-index: 100;
+      border-radius: 30px;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    
+    .period-tab {
+      padding: 1.1rem 2rem;
+      min-height: 56px;
+      border-radius: 28px !important;
+      -webkit-border-radius: 28px !important;
+      -moz-border-radius: 28px !important;
+      background: var(--bg-card);
+      color: var(--text-primary);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 2px solid transparent;
+      font-family: inherit;
+      font-size: 1rem;
+      text-decoration: none;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      line-height: 1;
+      overflow: hidden;
+      position: relative;
+      min-width: 140px;
+    }
+    
+    .period-tab::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      padding: 2px;
+      background: linear-gradient(135deg, transparent, transparent);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .period-tab:hover::before {
+      opacity: 1;
+    }
+    
+    .period-tab span {
+      font-size: 1.3rem;
+      transition: transform 0.3s;
+    }
+    
+    /* 高中时光 - 柔和的橙黄色渐变 */
+    .period-tab[href="#highschool"] {
+      background: linear-gradient(135deg, #FFB3BA, #FFDFBA);
+      color: #8B4513;
+      border-color: rgba(255, 179, 186, 0.3);
+    }
+    
+    .period-tab[href="#highschool"]::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    }
+    
+    .period-tab[href="#highschool"]:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(255, 179, 186, 0.3);
+      background: linear-gradient(135deg, #FFA8B0, #FFD4A5);
+    }
+    
+    .period-tab[href="#highschool"]:hover span {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    /* 大学岁月 - 柔和的青紫色渐变 */
+    .period-tab[href="#university"] {
+      background: linear-gradient(135deg, #BAE1FF, #D4B5FF);
+      color: #4A5568;
+      border-color: rgba(186, 225, 255, 0.3);
+    }
+    
+    .period-tab[href="#university"]::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    }
+    
+    .period-tab[href="#university"]:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(186, 225, 255, 0.3);
+      background: linear-gradient(135deg, #A8D5FF, #C8A5FF);
+    }
+    
+    .period-tab[href="#university"]:hover span {
+      transform: rotate(-10deg) scale(1.1);
+    }
+    
+    /* 研究生 - 柔和的黄橙色渐变 */
+    .period-tab[href="#graduate"] {
+      background: linear-gradient(135deg, #FFE5B4, #FFCCCB);
+      color: #8B4513;
+      border-color: rgba(255, 229, 180, 0.3);
+    }
+    
+    .period-tab[href="#graduate"]::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    }
+    
+    .period-tab[href="#graduate"]:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(255, 229, 180, 0.3);
+      background: linear-gradient(135deg, #FFDDA5, #FFB8B5);
+    }
+    
+    .period-tab[href="#graduate"]:hover span {
+      transform: rotate(10deg) scale(1.1);
+    }
+    
+    /* 留言墙 - 柔和的粉紫色渐变 */
+    .period-tab[href="#guestbook"] {
+      background: linear-gradient(135deg, #FFB6D9, #C5A3FF);
+      color: #6B46C1;
+      border-color: rgba(255, 182, 217, 0.3);
+    }
+    
+    .period-tab[href="#guestbook"]::before {
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.2));
+    }
+    
+    .period-tab[href="#guestbook"]:hover {
+      transform: translateY(-4px) scale(1.05);
+      box-shadow: 0 12px 28px rgba(255, 182, 217, 0.3);
+      background: linear-gradient(135deg, #FFA5D0, #B895FF);
+    }
+    
+    .period-tab[href="#guestbook"]:hover span {
+      transform: scale(1.2);
+    }
+    
+    /* 活动状态 */
+    .period-tab.active {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    
+    .period-tab.active span {
+      animation: pulse 2s infinite;
+    }
+    
+    @keyframes pulse {
+      0%, 100% {
+        transform: scale(1);
+      }
+      50% {
+        transform: scale(1.15);
+      }
+    }
+    
+    /* 时期区块 */
+    .period-section {
+      margin-bottom: 5rem;
+      scroll-margin-top: 150px;
+    }
+    
+    .period-header {
+      text-align: center;
+      margin-bottom: 3rem;
+      padding: 3rem 2.5rem;
+      background: var(--bg-secondary);
+      border-radius: 40px !important;
+      box-shadow: var(--shadow-sm);
+    }
+    
+    .period-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+    }
+    
+    .period-title {
+      font-size: 2rem;
+      font-weight: 700;
+      margin-bottom: 0.5rem;
+      color: var(--text-primary);
+    }
+    
+    .period-title span {
+      background: var(--gradient-warm);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .period-subtitle {
+      color: var(--text-secondary);
+      font-size: 1rem;
+    }
+    
+    /* 朋友卡片网格布局 */
+    .friends-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+      padding: 0 1rem;
+    }
+    
+    /* 单个朋友卡片 - 全新设计 */
+    .friend-card {
+      background: var(--bg-card);
+      border-radius: 24px;
+      padding: 0;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 107, 107, 0.1);
+    }
+    
+    .friend-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 5px;
+      background: var(--gradient-warm);
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform 0.4s ease;
+    }
+    
+    .friend-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(255, 107, 107, 0.2);
+    }
+    
+    .friend-card:hover::before {
+      transform: scaleX(1);
+    }
+    
+    /* 卡片头部区域 */
+    .friend-card-header {
+      padding: 2rem 2rem 1.5rem;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.05), rgba(167, 139, 250, 0.05));
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+    }
+    
+    /* 朋友头像 - 更大更美观 */
+    .friend-avatar {
+      width: 80px;
+      height: 80px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.5rem;
+      flex-shrink: 0;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+    
+    .friend-avatar::after {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      border-radius: 20px;
+      padding: 2px;
+      background: var(--gradient-warm);
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    
+    .friend-card:hover .friend-avatar::after {
+      opacity: 1;
+    }
+    
+    .friend-info {
+      flex: 1;
+    }
+    
+    .friend-info h3 {
+      font-size: 1.4rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+      line-height: 1.2;
+    }
+    
+    .friend-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--bg-secondary);
+      color: var(--primary);
+      padding: 0.35rem 0.9rem;
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-top: 0.5rem;
+    }
+    
+    /* 卡片内容区域 */
+    .friend-card-body {
+      padding: 1.5rem 2rem 2rem;
+    }
+    
+    .friend-time {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-light);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--bg-secondary);
+    }
+    
+    .friend-memories {
+      color: var(--text-secondary);
+      line-height: 1.8;
+      font-size: 0.95rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .friend-memories p {
+      margin-bottom: 0;
+    }
+    
+    /* 朋友名字列表 - 新设计 */
+    .friends-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.6rem;
+      margin-top: 1rem;
+    }
+    
+    .friend-name-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(167, 139, 250, 0.1));
+      color: var(--text-primary);
+      padding: 0.5rem 1rem;
+      border-radius: 12px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      border: 1px solid rgba(255, 107, 107, 0.2);
+      transition: all 0.3s;
+    }
+    
+    .friend-name-tag:hover {
+      background: var(--gradient-warm);
+      color: white;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    
+    .friend-name-tag span:first-child {
+      font-size: 1rem;
+    }
+    
+    /* 关系标签 - 新设计 */
+    .relationship-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      background: var(--gradient-warm);
+      color: white;
+      padding: 0.5rem 1.1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-top: 1rem;
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    
+    /* 添加朋友按钮 */
+    .add-friend-card {
+      background: var(--bg-secondary);
+      border: 2px dashed var(--text-light);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+    
+    .add-friend-card:hover {
+      border-color: var(--primary);
+      background: var(--bg-card);
+    }
+    
+    .add-friend-card span {
+      font-size: 2rem;
+      display: block;
+      margin-bottom: 0.5rem;
+    }
+    
+    /* 底部感言 */
+    .friends-footer-message {
+      text-align: center;
+      padding: 4rem 2rem;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+    
+    .friends-footer-message blockquote {
+      font-size: 1.25rem;
+      color: var(--text-secondary);
+      font-style: italic;
+      line-height: 1.9;
+      padding: 2rem;
+      background: var(--bg-secondary);
+      border-radius: var(--radius-lg);
+      position: relative;
+    }
+    
+    .friends-footer-message blockquote::before {
+      content: '"';
+      position: absolute;
+      top: -20px;
+      left: 20px;
+      font-size: 5rem;
+      color: var(--primary-light);
+      font-family: serif;
+      line-height: 1;
+    }
+    
+    /* 响应式 */
+    @media (max-width: 768px) {
+      .friend-timeline::before {
+        left: 20px;
+      }
+      
+      .friend-card,
+      .friend-card:nth-child(odd),
+      .friend-card:nth-child(even) {
+        padding-left: 50px;
+        padding-right: 0;
+        justify-content: flex-start;
+      }
+      
+      .friend-dot {
+        left: 20px;
+      }
+      
+      .friend-content::before {
+        display: none;
+      }
+      
+      .period-tabs {
+        position: relative;
+        top: 0;
+      }
+      
+      .friends-grid {
+        grid-template-columns: 1fr;
+      }
+      
+      .friend-card-header {
+        flex-direction: column;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <!-- 页面加载动画 -->
+  <div class="page-loader">
+    <div class="loader"></div>
+  </div>
+
+  <!-- 动态背景装饰 -->
+  <div class="bg-decoration">
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+  </div>
+
+  <!-- 光标跟随效果 -->
+  <div class="cursor-glow"></div>
+
+  <!-- 导航栏 -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="index.html" class="nav-logo">卓然 ✨</a>
+      <ul class="nav-links">
+        <li><a href="index.html">首页</a></li>
+        <li><a href="about.html" class="active">关于我</a></li>
+        <li><a href="blog.html">博客</a></li>
+        <li><a href="portfolio.html">作品集</a></li>
+        <li><a href="contact.html">联系</a></li>
+      </ul>
+      <div class="menu-toggle">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </nav>
+
+  <!-- 页面头部 -->
+  <section class="friends-hero">
+    <div class="reveal">
+      <p class="section-tag">💝 致我的朋友们</p>
+      <h1 class="hero-title">
+        那些<span class="name">温暖的你们</span>
+      </h1>
+      <p>
+        人生就像一场旅行，而你们是途中最美的风景。<br>
+        感谢每一个出现在我生命中的人，是你们让我的故事如此精彩。<br>
+        这里记录着我们共同走过的时光，每一段都弥足珍贵。
+      </p>
+    </div>
+  </section>
+
+  <!-- 时期导航 -->
+  <section class="section" style="padding-top: 0;">
+    <div class="period-tabs">
+      <a href="#highschool" class="period-tab">
+        <span>🏫</span>
+        <span>高中时光</span>
+      </a>
+      <a href="#university" class="period-tab">
+        <span>🌾</span>
+        <span>大学岁月</span>
+      </a>
+      <a href="#graduate" class="period-tab">
+        <span>🎓</span>
+        <span>研究生</span>
+      </a>
+      <a href="#guestbook" class="period-tab">
+        <span>💌</span>
+        <span>留言墙</span>
+      </a>
+    </div>
+
+    <!-- ==================== 高中时期 ==================== -->
+    <div id="highschool" class="period-section">
+      <div class="period-header reveal">
+        <div class="period-icon">🏫</div>
+        <h2 class="period-title">聊城一中 · <span>青春无悔</span></h2>
+        <p class="period-subtitle">2018 - 2021 · 山东聊城</p>
+      </div>
+      
+      <div class="friends-grid">
+        <!-- 高一朋友们 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #FF6B6B, #FFE66D);">📚</div>
+            <div class="friend-info">
+              <h3>高一的兄弟们</h3>
+              <span class="friend-tag">🏫 高一同学</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 2018年9月 · 聊城一中
+            </div>
+            <div class="friend-memories">
+              <p>高一，我们相遇在聊城一中，那是梦想开始的地方。一起上课、一起打球、一起为未来努力的日子，永远难忘。</p>
+            </div>
+            <div class="friends-list">
+              <div class="friend-name-tag"><span>👦</span><span>张广旭</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>祝怀斌</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>马庆一</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>宋成乾</span></div>
+            </div>
+            <div class="relationship-badge">
+              <span>🤝</span> 高一挚友
+            </div>
+          </div>
+        </div>
+
+        <!-- 高二朋友们 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #A78BFA, #F472B6);">📖</div>
+            <div class="friend-info">
+              <h3>高二的伙伴们</h3>
+              <span class="friend-tag">📚 高二同学</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 2019年9月 · 聊城一中
+            </div>
+            <div class="friend-memories">
+              <p>高二，我们一起为梦想拼搏，那些挑灯夜战、互相鼓励的日子，那些课间的欢声笑语，都深深印在心里。</p>
+            </div>
+            <div class="friends-list">
+              <div class="friend-name-tag"><span>👦</span><span>冯子珩</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>张传洲</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>徐锦鹏</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>宋浩然</span></div>
+            </div>
+            <div class="relationship-badge">
+              <span>✨</span> 高二挚友
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 大学时期 ==================== -->
+    <div id="university" class="period-section">
+      <div class="period-header reveal" style="background: linear-gradient(135deg, rgba(78, 205, 196, 0.1), rgba(167, 139, 250, 0.1));">
+        <div class="period-icon">🌾</div>
+        <h2 class="period-title">八一农垦大学 · <span>北大荒记忆</span></h2>
+        <p class="period-subtitle">2021 - 2024 · 黑龙江大庆</p>
+      </div>
+      
+      <div class="friends-grid">
+        <!-- 大学舍友 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #4ECDC4, #A78BFA);">🛏️</div>
+            <div class="friend-info">
+              <h3>大学舍友</h3>
+              <span class="friend-tag">🏠 四年室友</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 2021年9月 - 2024年 · 八一农垦大学
+            </div>
+            <div class="friend-memories">
+              <p>四年的室友，无数个深夜的卧谈会，一起吃的泡面，一起追的剧，零下三十度一起去食堂... 那些日子，是我大学最珍贵的回忆。</p>
+            </div>
+            <div class="friends-list">
+              <div class="friend-name-tag"><span>👦</span><span>刘宇鹏</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>李泽橦</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>朱博</span></div>
+            </div>
+            <div class="relationship-badge">
+              <span>🏠</span> 四年室友
+            </div>
+          </div>
+        </div>
+
+        <!-- 咖啡厅朋友 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #F472B6, #A78BFA);">☕</div>
+            <div class="friend-info">
+              <h3>咖啡厅的朋友们</h3>
+              <span class="friend-tag">☕ 咖啡厅搭子</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 大学期间 · 咖啡厅
+            </div>
+            <div class="friend-memories">
+              <p>在咖啡厅度过的美好时光，咖啡香气中结识的好朋友们。一起学习、一起聊天、一起分享生活的点滴。</p>
+            </div>
+            <div class="friends-list">
+              <div class="friend-name-tag"><span>👦</span><span>吕景浩</span></div>
+              <div class="friend-name-tag"><span>👧</span><span>岳玉婧</span></div>
+              <div class="friend-name-tag"><span>👧</span><span>段思琪</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>汪浩军</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>赵家豪</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>杨鑫</span></div>
+            </div>
+            <div class="relationship-badge">
+              <span>☕</span> 咖啡厅挚友
+            </div>
+          </div>
+        </div>
+
+        <!-- 师兄 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #FFE66D, #FF6B6B);">🎓</div>
+            <div class="friend-info">
+              <h3>翟立楠</h3>
+              <span class="friend-tag">🌟 师兄</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 大学期间
+            </div>
+            <div class="friend-memories">
+              <p>感谢师兄的指导与帮助，在学业和生活上给了我很多宝贵的建议。你的经验分享让我少走了很多弯路。</p>
+            </div>
+            <div class="relationship-badge">
+              <span>🌟</span> 师兄
+            </div>
+          </div>
+        </div>
+
+        <!-- 大学朋友 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: var(--gradient-warm);">📚</div>
+            <div class="friend-info">
+              <h3>大学好友</h3>
+              <span class="friend-tag">📖 同学</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 大学期间
+            </div>
+            <div class="friend-memories">
+              <p>一起上课、一起学习、一起成长的好朋友们。感谢你们陪我度过大学的美好时光。</p>
+            </div>
+            <div class="friends-list">
+              <div class="friend-name-tag"><span>👧</span><span>陈香君</span></div>
+              <div class="friend-name-tag"><span>👦</span><span>盛浩</span></div>
+            </div>
+            <div class="relationship-badge">
+              <span>💫</span> 好友
+            </div>
+          </div>
+        </div>
+
+        <!-- 游戏搭子 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: linear-gradient(135deg, #60A5FA, #4ECDC4);">🎮</div>
+            <div class="friend-info">
+              <h3>郭安祺</h3>
+              <span class="friend-tag">🎮 游戏搭子</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 大学期间
+            </div>
+            <div class="friend-memories">
+              <p>一起开黑、一起上分、一起欢笑的游戏时光！那些并肩作战的日子，让大学生活更加精彩。🎮</p>
+            </div>
+            <div class="relationship-badge">
+              <span>🎮</span> Game 搭子
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ==================== 研究生时期 ==================== -->
+    <div id="graduate" class="period-section">
+      <div class="period-header reveal" style="background: linear-gradient(135deg, rgba(255, 107, 107, 0.1), rgba(255, 230, 109, 0.1));">
+        <div class="period-icon">🎓</div>
+        <h2 class="period-title">华中农业大学 · <span>新的旅程</span></h2>
+        <p class="period-subtitle">2025 - 至今 · 湖北武汉</p>
+      </div>
+      
+      <div class="friends-grid">
+        <!-- 新朋友 -->
+        <div class="friend-card reveal">
+          <div class="friend-card-header">
+            <div class="friend-avatar" style="background: var(--gradient-warm);">🌸</div>
+            <div class="friend-info">
+              <h3>新的旅程</h3>
+              <span class="friend-tag">🎓 研究生</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-time">
+              <span>📅</span> 2025年 - 至今 · 华中农业大学
+            </div>
+            <div class="friend-memories">
+              <p>新的城市，新的学校，新的朋友。这里的故事才刚刚开始... 期待在武汉遇见更多有趣的人，创造更多美好的回忆。</p>
+            </div>
+            <div class="relationship-badge">
+              <span>🌱</span> 新朋友
+            </div>
+          </div>
+        </div>
+
+        <!-- 未来的朋友 -->
+        <div class="friend-card reveal" style="border: 2px dashed var(--text-light); background: var(--bg-secondary);">
+          <div class="friend-card-header" style="background: transparent;">
+            <div class="friend-avatar" style="background: rgba(255, 107, 107, 0.1);">🔮</div>
+            <div class="friend-info">
+              <h3 style="color: var(--text-light);">未来的朋友</h3>
+              <span class="friend-tag" style="background: rgba(255, 107, 107, 0.1); color: var(--text-light);">✨ 期待相遇</span>
+            </div>
+          </div>
+          <div class="friend-card-body">
+            <div class="friend-memories" style="text-align: center; color: var(--text-light);">
+              <p>期待与你相遇，一起书写新的故事...</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 底部感言 -->
+    <div class="friends-footer-message reveal">
+      <blockquote>
+        朋友是人生路上最温暖的光。感谢你们出现在我的生命里，无论相聚还是离别，那些共同走过的日子，都是我最珍贵的宝藏。愿我们各自安好，友谊长存。
+        <footer style="margin-top: 1rem; font-size: 1rem; color: var(--text-light);">
+          —— 李卓然 💝
+        </footer>
+      </blockquote>
+    </div>
+
+    <!-- ==================== 留言墙 ==================== -->
+    <div id="guestbook" class="period-section" style="scroll-margin-top: 100px;">
+      <div class="period-header reveal" style="background: linear-gradient(135deg, rgba(244, 114, 182, 0.15), rgba(96, 165, 250, 0.15));">
+        <div class="period-icon">💌</div>
+        <h2 class="period-title">留言墙 · <span>Say Hello</span></h2>
+        <p class="period-subtitle">留下你的足迹，让友谊有迹可循</p>
+      </div>
+      
+      <!-- 留言墙主体 - 全新设计 -->
+      <div class="guestbook-wrapper reveal">
+        <!-- 左右分栏布局 -->
+        <div class="guestbook-layout">
+          <!-- 左侧：留言表单 -->
+          <div class="guestbook-form-section">
+            <div class="form-header">
+              <div class="form-icon">✍️</div>
+              <h3>写下你的留言</h3>
+              <p>分享你的祝福与回忆</p>
+            </div>
+            
+            <form id="liveForm" class="guestbook-form-new">
+              <div class="form-group-new">
+                <label>
+                  <span class="label-icon">👤</span>
+                  你的名字
+                </label>
+                <input id="liveName" type="text" placeholder="怎么称呼你？" required>
+              </div>
+              
+              <div class="form-group-new">
+                <label>
+                  <span class="label-icon">😊</span>
+                  选择心情
+                </label>
+                <div class="mood-selector">
+                  <input type="radio" name="mood" id="mood1" value="😊" checked>
+                  <label for="mood1" class="mood-option">😊</label>
+                  <input type="radio" name="mood" id="mood2" value="🥰">
+                  <label for="mood2" class="mood-option">🥰</label>
+                  <input type="radio" name="mood" id="mood3" value="😎">
+                  <label for="mood3" class="mood-option">😎</label>
+                  <input type="radio" name="mood" id="mood4" value="🤗">
+                  <label for="mood4" class="mood-option">🤗</label>
+                  <input type="radio" name="mood" id="mood5" value="💪">
+                  <label for="mood5" class="mood-option">💪</label>
+                  <input type="radio" name="mood" id="mood6" value="🎉">
+                  <label for="mood6" class="mood-option">🎉</label>
+                  <input type="radio" name="mood" id="mood7" value="💝">
+                  <label for="mood7" class="mood-option">💝</label>
+                </div>
+              </div>
+              
+              <div class="form-group-new full-width">
+                <label>
+                  <span class="label-icon">💭</span>
+                  留言内容
+                </label>
+                <textarea id="liveMessage" rows="4" placeholder="想对卓然说什么呢？留下你的祝福或回忆..." required></textarea>
+              </div>
+              
+              <button type="submit" class="submit-btn-new">
+                <span class="btn-icon">💌</span>
+                <span>发送留言</span>
+                <span class="btn-arrow">→</span>
+              </button>
+            </form>
+            
+            <div class="form-footer">
+              <p>💡 留言会保存到云端，永久可见</p>
+            </div>
+          </div>
+          
+          <!-- 右侧：留言展示区 -->
+          <div class="guestbook-display-section">
+            <div class="display-header">
+              <h3>💌 来自朋友们的留言</h3>
+              <div class="message-count" id="messageCount">0 条留言</div>
+            </div>
+            
+            <!-- 轮播展示区 -->
+            <div class="carousel-container" id="liveDisplay">
+              <div class="carousel-placeholder">
+                <div class="placeholder-icon">💬</div>
+                <p>暂时没有留言</p>
+                <p class="placeholder-hint">快来留下第一条吧～</p>
+              </div>
+            </div>
+            
+            <!-- 轮播控制 -->
+            <div class="carousel-controls">
+              <button class="carousel-btn" id="prevBtn" title="上一条">
+                <span>←</span>
+              </button>
+              <div class="carousel-indicators" id="indicators"></div>
+              <button class="carousel-btn" id="nextBtn" title="下一条">
+                <span>→</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- 返回按钮 -->
+  <section class="section" style="text-align: center; padding-top: 0;">
+    <a href="about.html" class="btn btn-secondary">
+      <span>←</span> 返回关于我
+    </a>
+  </section>
+
+  <!-- 页脚 -->
+  <footer class="footer">
+    <p>
+      用 <span class="footer-heart">❤️</span> 和 ☕ 制作 · 
+      © 2025 李卓然
+    </p>
+  </footer>
+
+  <script src="js/main.js"></script>
+  <script>
+    // 平滑滚动到锚点
+    document.querySelectorAll('.period-tab').forEach(tab => {
+      tab.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+          targetElement.scrollIntoView({ behavior: 'smooth' });
+        }
+        // 更新活动状态
+        document.querySelectorAll('.period-tab').forEach(t => t.classList.remove('active'));
+        this.classList.add('active');
+      });
+    });
+    
+    // Supabase 即时留言（云端持久化）+ 本地轮播 - 全新设计
+    (function() {
+      const SUPABASE_URL = 'https://tdagkwzwzvtqekkeaoro.supabase.co';
+      const SUPABASE_ANON_KEY = 'sb_publishable_q9byc9rHFPBzieNvI49rIA_kvRLC_w5';
+      const TABLE = 'guestbook_messages';
+      const form = document.getElementById('liveForm');
+      const display = document.getElementById('liveDisplay');
+      const messageCount = document.getElementById('messageCount');
+      const prevBtn = document.getElementById('prevBtn');
+      const nextBtn = document.getElementById('nextBtn');
+      const indicators = document.getElementById('indicators');
+      const storageKey = 'liveGuestbookMessages';
+      const maxMessages = 50;
+      let messages = [];
+      let current = 0;
+      let timer = null;
+      const carouselDelay = 6000; // 轮播间隔（毫秒）
+      let paused = false;
+
+      function updateMessageCount() {
+        if (messageCount) {
+          messageCount.textContent = `${messages.length} 条留言`;
+        }
+      }
+
+      function updateIndicators() {
+        if (!indicators) return;
+        indicators.innerHTML = '';
+        for (let i = 0; i < Math.min(messages.length, 10); i++) {
+          const dot = document.createElement('div');
+          dot.className = `indicator ${i === current ? 'active' : ''}`;
+          dot.addEventListener('click', () => {
+            current = i;
+            renderMessage(current);
+            updateIndicators();
+            resetCarousel();
+          });
+          indicators.appendChild(dot);
+        }
+      }
+
+      function renderMessage(idx) {
+        if (!messages.length) {
+          display.innerHTML = `
+            <div class="carousel-placeholder">
+              <div class="placeholder-icon">💬</div>
+              <p>暂时没有留言</p>
+              <p class="placeholder-hint">快来留下第一条吧～</p>
+            </div>
+          `;
+          updateMessageCount();
+          updateIndicators();
+          return;
+        }
+        const m = messages[idx];
+        display.innerHTML = `
+          <div class="message-card-new">
+            <div class="message-card-content">
+              <div class="message-card-header">
+                <div class="message-avatar">${m.mood || '💬'}</div>
+                <div class="message-info">
+                  <div class="message-name">${m.name || '匿名'}</div>
+                  <div class="message-time">${m.time || ''}</div>
+                </div>
+              </div>
+              <div class="message-text">${m.text || ''}</div>
+            </div>
+          </div>
+        `;
+        updateIndicators();
+      }
+
+      function nextMessage() {
+        if (!messages.length) return;
+        current = (current + 1) % messages.length;
+        renderMessage(current);
+        resetCarousel();
+      }
+
+      function prevMessage() {
+        if (!messages.length) return;
+        current = (current - 1 + messages.length) % messages.length;
+        renderMessage(current);
+        resetCarousel();
+      }
+
+      function resetCarousel() {
+        if (timer) clearInterval(timer);
+        if (!paused && messages.length > 1) {
+          timer = setInterval(nextMessage, carouselDelay);
+        }
+      }
+
+      function startCarousel() {
+        resetCarousel();
+      }
+
+      async function fetchRemoteMessages() {
+        try {
+          const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}?select=name,mood,message,created_at&order=created_at.desc&limit=${maxMessages}`, {
+            headers: {
+              apikey: SUPABASE_ANON_KEY,
+              Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            },
+          });
+          if (!res.ok) throw new Error('fetch failed');
+          const data = await res.json();
+          messages = (data || []).map(row => ({
+            name: row.name || '匿名',
+            mood: row.mood || '💬',
+            text: (row.message || '').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+            time: row.created_at ? new Date(row.created_at).toLocaleString('zh-CN') : ''
+          }));
+          localStorage.setItem(storageKey, JSON.stringify(messages));
+        } catch (e) {
+          // 退回本地缓存
+          try {
+            const stored = localStorage.getItem(storageKey);
+            if (stored) messages = JSON.parse(stored);
+          } catch (_) {}
+        }
+        current = 0;
+        renderMessage(current);
+        updateMessageCount();
+        startCarousel();
+      }
+
+      async function addRemoteMessage(name, mood, text) {
+        const payload = {
+          name: name || '匿名',
+          mood: mood || '💬',
+          message: text || '',
+        };
+        const res = await fetch(`${SUPABASE_URL}/rest/v1/${TABLE}`, {
+          method: 'POST',
+          headers: {
+            apikey: SUPABASE_ANON_KEY,
+            Authorization: `Bearer ${SUPABASE_ANON_KEY}`,
+            'Content-Type': 'application/json',
+            Prefer: 'return=representation'
+          },
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error('insert failed');
+        const data = await res.json();
+        return (data && data[0]) ? {
+          name: data[0].name || '匿名',
+          mood: data[0].mood || '💬',
+          text: (data[0].message || '').replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+          time: data[0].created_at ? new Date(data[0].created_at).toLocaleString('zh-CN') : ''
+        } : null;
+      }
+
+      function addLocalMessage(msg) {
+        messages.unshift(msg);
+        if (messages.length > maxMessages) messages = messages.slice(0, maxMessages);
+        localStorage.setItem(storageKey, JSON.stringify(messages));
+        current = 0;
+        renderMessage(current);
+        updateMessageCount();
+        startCarousel();
+      }
+
+      if (form && display) {
+        fetchRemoteMessages();
+        
+        // 悬停时暂停轮播
+        display.addEventListener('mouseenter', () => { paused = true; });
+        display.addEventListener('mouseleave', () => { paused = false; });
+        
+        // 轮播控制按钮
+        if (nextBtn) {
+          nextBtn.addEventListener('click', nextMessage);
+        }
+        if (prevBtn) {
+          prevBtn.addEventListener('click', prevMessage);
+        }
+
+        form.addEventListener('submit', async (e) => {
+          e.preventDefault();
+          const name = document.getElementById('liveName').value.trim();
+          // 获取选中的心情（radio button）
+          const moodRadio = form.querySelector('input[name="mood"]:checked');
+          const mood = moodRadio ? moodRadio.value : '😊';
+          const text = document.getElementById('liveMessage').value.trim();
+          if (!text) return;
+          
+          // 禁用提交按钮，显示加载状态
+          const submitBtn = form.querySelector('.submit-btn-new');
+          const originalText = submitBtn.innerHTML;
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<span>⏳</span> <span>发送中...</span>';
+          
+          try {
+            const msg = await addRemoteMessage(name, mood, text);
+            if (msg) {
+              addLocalMessage(msg);
+            }
+            // 清空表单
+            form.reset();
+            // 重置第一个心情为选中
+            const firstMood = form.querySelector('input[name="mood"]');
+            if (firstMood) firstMood.checked = true;
+          } catch (err) {
+            // 如果云端失败，依然本地展示
+            const time = new Date();
+            addLocalMessage({
+              name: name || '匿名',
+              mood: mood || '💬',
+              text: text.replace(/</g, '&lt;').replace(/>/g, '&gt;'),
+              time: time.toLocaleString('zh-CN')
+            });
+            // 清空表单
+            form.reset();
+            // 重置第一个心情为选中
+            const firstMood = form.querySelector('input[name="mood"]');
+            if (firstMood) firstMood.checked = true;
+          } finally {
+            // 恢复按钮状态
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = originalText;
+          }
+        });
+      }
+    })();
+  </script>
+  
+  <style>
+    @keyframes slideInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    #guestbookForm button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+    }
+    
+    .message-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    
+    .message-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-md);
+    }
+
+    /* 留言墙全新设计 */
+    .guestbook-wrapper {
+      max-width: 1400px;
+      margin: 0 auto 4rem;
+    }
+    
+    .guestbook-layout {
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+    
+    /* 左侧表单区域 */
+    .guestbook-form-section {
+      background: var(--bg-card);
+      border-radius: 28px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      position: sticky;
+      top: 120px;
+    }
+    
+    .form-header {
+      text-align: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--bg-secondary);
+    }
+    
+    .form-icon {
+      font-size: 3.5rem;
+      margin-bottom: 0.75rem;
+      display: block;
+    }
+    
+    .form-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+      margin-bottom: 0.5rem;
+    }
+    
+    .form-header p {
+      color: var(--text-secondary);
+      font-size: 0.95rem;
+    }
+    
+    /* 新表单样式 */
+    .guestbook-form-new {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+    
+    .form-group-new {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    
+    .form-group-new.full-width {
+      grid-column: 1 / -1;
+    }
+    
+    .form-group-new label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      font-size: 0.95rem;
+    }
+    
+    .label-icon {
+      font-size: 1.1rem;
+    }
+    
+    .form-group-new input[type="text"],
+    .form-group-new textarea {
+      width: 100%;
+      padding: 1rem 1.25rem;
+      border: 2px solid var(--bg-secondary);
+      border-radius: 16px;
+      font-size: 1rem;
+      font-family: inherit;
+      background: var(--bg-primary);
+      transition: all 0.3s ease;
+      color: var(--text-primary);
+    }
+    
+    .form-group-new input[type="text"]:focus,
+    .form-group-new textarea:focus {
+      outline: none;
+      border-color: var(--primary);
+      box-shadow: 0 0 0 4px rgba(255, 107, 107, 0.1);
+      transform: translateY(-2px);
+    }
+    
+    .form-group-new textarea {
+      resize: vertical;
+      min-height: 120px;
+      line-height: 1.7;
+    }
+    
+    /* 心情选择器 */
+    .mood-selector {
+      display: flex;
+      gap: 0.75rem;
+      flex-wrap: wrap;
+    }
+    
+    .mood-selector input[type="radio"] {
+      display: none;
+    }
+    
+    .mood-option {
+      width: 50px;
+      height: 50px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.75rem;
+      background: var(--bg-secondary);
+      border: 2px solid transparent;
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .mood-option:hover {
+      transform: translateY(-3px) scale(1.1);
+      background: var(--bg-primary);
+      border-color: var(--primary-light);
+    }
+    
+    .mood-selector input[type="radio"]:checked + .mood-option {
+      background: var(--gradient-warm);
+      border-color: var(--primary);
+      transform: scale(1.15);
+      box-shadow: 0 4px 12px rgba(255, 107, 107, 0.3);
+    }
+    
+    /* 提交按钮 */
+    .submit-btn-new {
+      width: 100%;
+      padding: 1.25rem 2rem;
+      background: var(--gradient-warm);
+      color: white;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.05rem;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      margin-top: 0.5rem;
+      box-shadow: 0 4px 16px rgba(255, 107, 107, 0.2);
+    }
+    
+    .submit-btn-new:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 8px 28px rgba(255, 107, 107, 0.35);
+    }
+    
+    .submit-btn-new:active {
+      transform: translateY(-2px);
+    }
+    
+    .btn-icon {
+      font-size: 1.2rem;
+    }
+    
+    .btn-arrow {
+      transition: transform 0.3s;
+    }
+    
+    .submit-btn-new:hover .btn-arrow {
+      transform: translateX(5px);
+    }
+    
+    .form-footer {
+      text-align: center;
+      margin-top: 1.5rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--bg-secondary);
+    }
+    
+    .form-footer p {
+      color: var(--text-light);
+      font-size: 0.85rem;
+    }
+    
+    /* 右侧展示区域 */
+    .guestbook-display-section {
+      background: var(--bg-card);
+      border-radius: 28px;
+      padding: 2.5rem;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      min-height: 500px;
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .display-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 2rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 2px solid var(--bg-secondary);
+    }
+    
+    .display-header h3 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--text-primary);
+    }
+    
+    .message-count {
+      background: var(--bg-secondary);
+      color: var(--text-secondary);
+      padding: 0.5rem 1rem;
+      border-radius: 20px;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    
+    /* 轮播容器 */
+    .carousel-container {
+      flex: 1;
+      min-height: 300px;
+      position: relative;
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.04), rgba(167, 139, 250, 0.04));
+      border-radius: 20px;
+      padding: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(0, 0, 0, 0.04);
+    }
+    
+    .carousel-placeholder {
+      text-align: center;
+      color: var(--text-light);
+    }
+    
+    .placeholder-icon {
+      font-size: 4rem;
+      margin-bottom: 1rem;
+      opacity: 0.5;
+    }
+    
+    .placeholder-hint {
+      font-size: 0.9rem;
+      margin-top: 0.5rem;
+    }
+    
+    /* 留言卡片 */
+    .message-card-new {
+      width: 100%;
+      opacity: 0;
+      transform: translateY(20px) scale(0.95);
+      animation: messageSlideIn 0.6s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+    }
+    
+    @keyframes messageSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+    
+    .message-card-content {
+      background: white;
+      border-radius: 20px;
+      padding: 2rem;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      position: relative;
+      border-left: 4px solid var(--primary);
+    }
+    
+    .message-card-header {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+    }
+    
+    .message-avatar {
+      width: 50px;
+      height: 50px;
+      background: var(--gradient-warm);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    
+    .message-info {
+      flex: 1;
+    }
+    
+    .message-name {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text-primary);
+      margin-bottom: 0.25rem;
+    }
+    
+    .message-time {
+      font-size: 0.85rem;
+      color: var(--text-light);
+    }
+    
+    .message-mood-large {
+      font-size: 2rem;
+    }
+    
+    .message-text {
+      color: var(--text-secondary);
+      line-height: 1.9;
+      font-size: 1.05rem;
+      white-space: pre-wrap;
+      word-break: break-word;
+    }
+    
+    /* 轮播控制 */
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1.5rem;
+      margin-top: 2rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--bg-secondary);
+    }
+    
+    .carousel-btn {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      border: none;
+      color: var(--text-secondary);
+      font-size: 1.25rem;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .carousel-btn:hover {
+      background: var(--gradient-warm);
+      color: white;
+      transform: scale(1.1);
+    }
+    
+    .carousel-indicators {
+      display: flex;
+      gap: 0.5rem;
+      align-items: center;
+    }
+    
+    .indicator {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--bg-secondary);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .indicator.active {
+      width: 24px;
+      border-radius: 4px;
+      background: var(--gradient-warm);
+    }
+    
+    /* 响应式 */
+    @media (max-width: 968px) {
+      .guestbook-layout {
+        grid-template-columns: 1fr;
+      }
+      
+      .guestbook-form-section {
+        position: relative;
+        top: 0;
+      }
+      
+      .mood-selector {
+        justify-content: center;
+      }
+    }
+  </style>
+</body>
+</html>
+
